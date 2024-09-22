@@ -21,7 +21,7 @@ const TotalBalanceBox = ({ accounts = [], totalBanks, totalCurrentBalance}: Totl
 
                 <p className="total-balance-amount flex-center gap-2">
                     <AnimatedCounter amount={totalCurrentBalance} />
-                    {formatAmount(totalCurrentBalance)}
+                    {/*formatAmount(totalCurrentBalance)*/}
                 </p>
 
             </div>
