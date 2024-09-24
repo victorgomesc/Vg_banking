@@ -10,7 +10,7 @@ export const sidebarLinks = [
     label: "My Banks",
   },
   {
-    imgURL: "/icons/transaction.svg",
+    imgURL: "/icons/transaction.svg", 
     route: "/transaction-history",
     label: "Transaction History",
   },
