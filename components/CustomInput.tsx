@@ -7,7 +7,7 @@ import { authFormSchema } from '@/lib/utils'
 
 interface CustomInput {
     control: Control<z.infer<typeof authFormSchema>>,
-    name: string,
+    name: FieldPath<z.infer<typeof authFormSchema>>,
     label: string,
     placeholder: string,
 }
@@ -24,7 +24,7 @@ const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
               </FormLabel>
               <div className='flex w-full flex-col'>
                 <FormControl>
-                  <Input placeholder={placeholder} className="input-class" {...field} type="password" />
+                  <Input placeholder={placeholder} className="input-class" {...field} type={name === 'password' ? 'password' : 'text'} />
                 </FormControl>
                 <FormMessage className="form-menssage mt-2" />
               </div>
