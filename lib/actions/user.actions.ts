@@ -25,6 +25,7 @@ export const signUp = async ({ ...userData }: SignUpParams) => {
         const { account } = await createAdminClient();
 
   const newUserAccount = await account.create(ID.unique(), 
+    email,
     password, 
     `${firstName} ${lastName}`
 );
