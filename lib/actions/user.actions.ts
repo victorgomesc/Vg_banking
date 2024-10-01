@@ -5,6 +5,12 @@ import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
 
+const {
+  APPWRITE_DATABASE_ID: DATABASE_ID,
+  APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
+  APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+} = process.env;
+
 export const signIn = async () => {
     try {
         // mutation database make fetch
@@ -13,13 +19,12 @@ export const signIn = async () => {
     }
 }
 
-export const signUp = async (userData: SignUpParams) => {
+export const signUp = async ({ ...userData }: SignUpParams) => {
     const { email, password, firstName, lastName } = userData;
     try {
         const { account } = await createAdminClient();
 
   const newUserAccount = await account.create(ID.unique(), 
-    email, 
     password, 
     `${firstName} ${lastName}`
 );
