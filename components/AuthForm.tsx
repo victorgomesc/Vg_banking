@@ -22,6 +22,7 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -87,7 +88,7 @@ const AuthForm = ({ type }: { type: string }) => {
           </div>
         ): (
           <>
-            <Form {...form}>
+      <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 
         {type === 'sign-up' && (
