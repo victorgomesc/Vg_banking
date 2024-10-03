@@ -7,6 +7,7 @@ import { encryptId, parseStringify } from "../utils";
 import { plaidClient } from "../plaid";
 import { ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum } from "plaid";
 import { revalidatePath } from "next/cache";
+import { addFundingSource } from "./dwolla.actions";
 
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
@@ -91,6 +92,25 @@ export async function getLoggedInUser() {
     }
   }
 
+  export const createBankAccount = async ({
+    userId,
+    bankId,
+    accountId,
+    accessToken,
+    fundingSourceUrl,
+    sharableId,
+  }: createBankAccountProps ) => {
+    try {
+      const { database } = await createAdminClient();
+
+      const bankAccount = await database,createDocument(
+        
+      )
+    } catch (error) {
+      
+    }
+  }
+
   export const exchangePublicToken = async ({ publicToken, user, }: exchangePublicTokenProps) => {
     try {
       const response = await plaidClient.itemPublicTokenExchange({
@@ -118,7 +138,7 @@ export async function getLoggedInUser() {
       const fundingSourceUrl = await addFundingSource({
         dwollaCustomerId: user.dwollaCustomerId,
         processorToken,
-        bankName: accountData,name,
+        bankName: accountData.name,
       });
 
       if(!fundingSourceUrl) throw Error;
