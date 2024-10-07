@@ -103,9 +103,21 @@ export async function getLoggedInUser() {
     try {
       const { database } = await createAdminClient();
 
-      const bankAccount = await database,createDocument(
-        
+      const bankAccount = await database.createDocument(
+        DATABASE_ID!,
+        BANK_COLLECTION_ID!,
+        ID.unique(),
+        {
+          userId,
+          bankId,
+          accountId,
+          accessToken,
+          fundingSourceUrl,
+          sharableId,
+        }
       )
+
+      return parseStringify(bankAccount);
     } catch (error) {
       
     }
