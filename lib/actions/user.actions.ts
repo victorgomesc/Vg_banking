@@ -8,7 +8,6 @@ import { plaidClient } from "../plaid";
 import { ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum } from "plaid";
 import { revalidatePath } from "next/cache";
 import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
-import { error } from "console";
 
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
@@ -26,8 +25,8 @@ export const signIn = async ({ email, password }: signInProps) => {
     }
 }
 
-export const signUp = async (userData: SignUpParams) => {
-    const { email, password, firstName, lastName } = userData;
+export const signUp = async ({password, ...userData}: SignUpParams) => {
+    const { email, firstName, lastName } = userData;
 
     let newUserAccount;
 
