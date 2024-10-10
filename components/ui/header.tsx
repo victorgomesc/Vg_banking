@@ -7,6 +7,12 @@ const header = () => {
             <h1>
                 HEADER
             </h1>
+            <p>
+            text
+            </p>
+            <p>
+            describe('first', () => { second })
+            </p>
         </div>
     </div>
   )
