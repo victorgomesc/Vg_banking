@@ -1,6 +1,6 @@
 "use server";
 
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { encryptId, extractCustomerIdFromUrl, parseStringify } from "../utils";
@@ -198,6 +198,20 @@ export async function getLoggedInUser() {
       });
     } catch (error) {
       console.error("an error ocurred ehile creating exchanging token:", error);
+    }
+  }
+
+  export const getBanks = async ({ userId }: getBanksProps) => {
+    try {
+      const { database } = await createAdminClient()
+
+      const banks = await database.listDocuments(
+        DATABASE_ID!,
+        BANK_COLLECTION_ID!,
+        [Query.equal('userId', [user])]
+      )
+    } catch (error) {
+      
     }
   }
   
