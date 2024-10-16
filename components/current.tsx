@@ -2,7 +2,11 @@ import React from 'react'
 
 const current = () => {
   return (
-    <div>current</div>
+    <div>
+      <div>
+        <h1>current</h1>
+      </div>
+    </div>
   )
 }
 
