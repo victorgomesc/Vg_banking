@@ -4,7 +4,7 @@ import { ID, Query } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { encryptId, extractCustomerIdFromUrl, parseStringify } from "../utils";
-import { plaidClient } from "../plaid";
+import { plaidClient } from "@/lib/plaid";
 import { CountryCode, ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum, Products } from "plaid";
 import { revalidatePath } from "next/cache";
 import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
@@ -203,15 +203,16 @@ export async function getLoggedInUser() {
 
   export const getBanks = async ({ userId }: getBanksProps) => {
     try {
-      const { database } = await createAdminClient()
+      const { database } = await createAdminClient();
 
       const banks = await database.listDocuments(
         DATABASE_ID!,
         BANK_COLLECTION_ID!,
-        [Query.equal('userId', [user])]
+        [Query.equal('userId', [userId])]
       )
+      return parseStringify(banks.documents)
     } catch (error) {
-      
+      console.log(error)
     }
   }
   
