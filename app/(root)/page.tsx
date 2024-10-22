@@ -7,6 +7,7 @@ import { getLoggedInUser } from '@/lib/actions/user.actions';
 import React from 'react'
 
 const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
+  const currentPage = Number(page as string) || 1;
     const loggedIn = await getLoggedInUser();
 
     const accounts = await getAccounts({ userId: loggedIn.$id })
@@ -32,7 +33,12 @@ const Home = async ({ searchParams : { id, page } }: SearchParamProps) => {
              />
           </header>
 
-          <RecentTransactions />
+          <RecentTransactions 
+            accounts={accountsData}
+            transactions={account?.transactions}
+            appwriteItemId={appwriteItemId}
+            page={currentPage}
+          />
 
         </div>
 
