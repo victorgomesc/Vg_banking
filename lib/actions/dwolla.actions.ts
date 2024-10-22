@@ -1,6 +1,5 @@
 "use server";
 
-import { error } from "console";
 import { Client } from "dwolla-v2";
 
 const getEnvironment = (): "production" | "sandbox" => {
@@ -36,7 +35,7 @@ export const createFundingSource = async (
       })
       .then((res) => res.headers.get("location"));
   } catch (err) {
-    console.error("Creating a Funding Source Failed: ", error);
+    console.error("Creating a Funding Source Failed: ", err);
   }
 };
 
